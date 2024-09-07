@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 server.use(cors());
 server.use(express.json());
 
-server.use('/api/v1', suggestionsRoutes);
+server.use('/api/v1/suggestions', suggestionsRoutes);
   
 server.listen(port, () => {
   console.log(`App listening on port ${port}`);
