@@ -1,16 +1,26 @@
-# 🎉 Suggestion System
+# 🎉 Suggestion System Backend 🎉
 
-Welcome to the **Suggestion System**! This Node.js app uses Express and SQLite to let users submit, view, and upvote suggestions. 🚀
+Welcome to the backend of the Suggestion System! This server-side application is designed to handle all the business logic and data management for the suggestion system. 
 
-## Features
+## 🛠️ Technologies Used
 
-- 📝 **Submit Suggestions**: Add new ideas with a title and description.
-- 📜 **View Suggestions**: See all submitted suggestions in one place.
-- 👍 **Upvote Suggestions**: Increase the visibility of your favorite suggestions.
+- **Node.js**: 🚀 JavaScript runtime built on Chrome's V8 engine.
+- **Express**: 🌐 Fast, minimalist web framework for Node.js.
+- **SQLite**: 💾 Lightweight, in-memory database for efficient data storage.
+- **Render**: 📥 Hosted on render
+## 🚀 Features
 
-## Installation
+- **API Endpoints**:
+  - **GET** `/api/v1/suggestions/` - Retrieve all suggestions.
+  - **POST** `/api/v1/suggestions/` - Create a new suggestion.
+  - **POST** `/api/v1/suggestions/:id/vote` - Upvote a suggestion.
 
-1. **Clone the Repository:**
+- **In-Memory SQLite Database**: Efficiently manage suggestion data without the need for persistent storage.
 
+## 📥 Installation
+
+To set up the backend locally:
+
+1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Rajesh144142/Assignment-Backend.git
