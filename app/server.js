@@ -7,7 +7,13 @@ dotenv.config();
 const server = express();
 const port = process.env.PORT || 3000;
 
-server.use(cors());
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+};
+
+server.use(cors(corsOptions));
 server.use(express.json());
 
 server.use('/api/v1/suggestions', suggestionsRoutes);
