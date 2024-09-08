@@ -26,15 +26,22 @@ const createSuggestion = async (title, description) => {
 
 const upvoteSuggestion = async (id) => {
   return new Promise((resolve, reject) => {
-    db.run('UPDATE suggestions SET votes = votes + 1 WHERE id = ?', [id], function (err) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
+    db.serialize(() => {
+      db.run('UPDATE suggestions SET votes = votes + 1 WHERE id = ?', [id], function (err) {
+        if (err) {
+          return reject(err);
+        }
+        db.get('SELECT id,votes FROM suggestions WHERE id = ?', [id], (err, row) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve(row);
+        });
+      });
     });
   });
 };
+
 
 module.exports = {
   getAllSuggestions,

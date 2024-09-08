@@ -15,3 +15,4 @@ server.use('/api/v1/suggestions', suggestionsRoutes);
 server.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+

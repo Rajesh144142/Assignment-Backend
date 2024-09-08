@@ -11,12 +11,11 @@ const getAllSuggestions = async (req, res) => {
   const createSuggestion = async (req, res) => {
     const { title, description } = req.body;
     try {
-        console.log(title, description)
       if (!title) {
         return res.status(400).json({ error: 'Title is required.' });
       }
       const id = await suggestionsRepo.createSuggestion(title, description);
-      res.status(201).json({ id, title, description });
+      res.status(201).json({ id, title, description,votes:0});
     } catch (error) {
       res.status(500).json({ error: 'An error occurred while creating the suggestion.' });
     }
@@ -25,8 +24,8 @@ const getAllSuggestions = async (req, res) => {
   const upvoteSuggestion = async (req, res) => {
     const { id } = req.params;
     try {
-      await suggestionsRepo.upvoteSuggestion(id);
-      res.status(200).json({ message: 'Suggestion upvoted successfully.' });
+      const response = await suggestionsRepo.upvoteSuggestion(id);
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred while upvoting the suggestion.' });
     }
