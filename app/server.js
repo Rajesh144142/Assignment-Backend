@@ -13,7 +13,7 @@ const corsOptions = {
   allowedHeaders: 'Content-Type,Authorization',
 };
 
-server.use(cors(corsOptions));
+server.use(cors());
 server.use(express.json());
 
 server.use('/api/v1/suggestions', suggestionsRoutes);

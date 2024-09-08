@@ -11,9 +11,9 @@ const getAllSuggestions = async (req, res) => {
   const createSuggestion = async (req, res) => {
     const { title, description } = req.body;
     try {
-      if (!title) {
-        return res.status(400).json({ error: 'Title is required.' });
-      }
+      // if (!title) {
+      //   return res.status(400).json({ error: 'Title is required.' });
+      // }
       const id = await suggestionsRepo.createSuggestion(title, description);
       res.status(201).json({ id, title, description,votes:0});
     } catch (error) {
@@ -24,6 +24,9 @@ const getAllSuggestions = async (req, res) => {
   const upvoteSuggestion = async (req, res) => {
     const { id } = req.params;
     try {
+      if (!id || isNaN(id)) {
+        return res.status(400).json({ error: 'Suggestion id is not present or invalid' });
+      }
       const response = await suggestionsRepo.upvoteSuggestion(id);
       res.status(200).json(response);
     } catch (error) {
